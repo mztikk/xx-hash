@@ -2,7 +2,9 @@
 name = "xx-hash"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+license = "MIT"
+description = "xxHash implementation"
+authors = ["mztikk <mztikk@outlook.de>"]
+repository = "https://github.com/mztikk/xx-hash"
+homepage = "https://github.com/mztikk/xx-hash"
+tags = ["hash", "xxhash"]
