@@ -1,4 +1,4 @@
-use std::mem;
+#![no_std]
 
 const PRIME32_1: u32 = 2654435761;
 const PRIME32_2: u32 = 2246822519;
@@ -6,7 +6,7 @@ const PRIME32_3: u32 = 3266489917;
 const PRIME32_4: u32 = 668265263;
 const PRIME32_5: u32 = 374761393;
 
-const CHUNK_SIZE: usize = mem::size_of::<u32>() * 4;
+const CHUNK_SIZE: usize = core::mem::size_of::<u32>() * 4;
 
 #[inline(always)]
 const fn get_32bits(input: &[u8], cursor: usize) -> u32 {
@@ -50,13 +50,13 @@ pub const fn xx_hash32_seed(input: &[u8], seed: u32) -> u32 {
 
         loop {
             v1 = round(v1, get_32bits(input, cursor));
-            cursor += mem::size_of::<u32>();
+            cursor += core::mem::size_of::<u32>();
             v2 = round(v2, get_32bits(input, cursor));
-            cursor += mem::size_of::<u32>();
+            cursor += core::mem::size_of::<u32>();
             v3 = round(v3, get_32bits(input, cursor));
-            cursor += mem::size_of::<u32>();
+            cursor += core::mem::size_of::<u32>();
             v4 = round(v4, get_32bits(input, cursor));
-            cursor += mem::size_of::<u32>();
+            cursor += core::mem::size_of::<u32>();
 
             if (input.len() - cursor) < CHUNK_SIZE {
                 break;
@@ -77,15 +77,15 @@ pub const fn xx_hash32_seed(input: &[u8], seed: u32) -> u32 {
 
     while len >= 4 {
         result = result.wrapping_add(get_32bits(input, cursor).wrapping_mul(PRIME32_3));
-        cursor += mem::size_of::<u32>();
-        len -= mem::size_of::<u32>();
+        cursor += core::mem::size_of::<u32>();
+        len -= core::mem::size_of::<u32>();
         result = result.rotate_left(17).wrapping_mul(PRIME32_4);
     }
 
     while len > 0 {
         result = result.wrapping_add((input[cursor] as u32).wrapping_mul(PRIME32_5));
-        cursor += mem::size_of::<u8>();
-        len -= mem::size_of::<u8>();
+        cursor += core::mem::size_of::<u8>();
+        len -= core::mem::size_of::<u8>();
         result = result.rotate_left(11).wrapping_mul(PRIME32_1);
     }
 
