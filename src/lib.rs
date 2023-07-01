@@ -137,11 +137,11 @@ const fn avalanche64(mut input: u64) -> u64 {
 }
 
 #[inline(always)]
-pub fn xx_hash64(input: &[u8]) -> u64 {
+pub const fn xx_hash64(input: &[u8]) -> u64 {
     xx_hash64_seed(input, 0)
 }
 
-pub fn xx_hash64_seed(input: &[u8], seed: u64) -> u64 {
+pub const fn xx_hash64_seed(input: &[u8], seed: u64) -> u64 {
     let mut result: u64;
     let mut cursor = 0;
 
