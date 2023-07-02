@@ -1,5 +1,3 @@
-use core::slice::ChunksExact;
-
 pub(crate) struct Buffer<const SIZE: usize> {
     data: [u8; SIZE],
     pub(crate) len: usize,

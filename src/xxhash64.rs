@@ -21,18 +21,6 @@ const fn get_64bits(input: &[u8], cursor: usize) -> u64 {
 }
 
 #[inline(always)]
-const fn get_64bits_direct(input: &[u8]) -> u64 {
-    input[0] as u64
-        | (input[1] as u64) << 8
-        | (input[2] as u64) << 16
-        | (input[3] as u64) << 24
-        | (input[4] as u64) << 32
-        | (input[5] as u64) << 40
-        | (input[6] as u64) << 48
-        | (input[7] as u64) << 56
-}
-
-#[inline(always)]
 const fn round64(acc: u64, input: u64) -> u64 {
     acc.wrapping_add(input.wrapping_mul(XXH_PRIME64_2))
         .rotate_left(31)
