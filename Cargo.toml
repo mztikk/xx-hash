@@ -8,3 +8,6 @@ authors = ["mztikk <mztikk@outlook.de>"]
 repository = "https://github.com/mztikk/xx-hash"
 homepage = "https://github.com/mztikk/xx-hash"
 tags = ["hash", "xxhash"]
+
+[dev-dependencies]
+rand = "0.8.5"
